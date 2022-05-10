@@ -1,0 +1,54 @@
+package Toolc
+public
+
+	with Base_Types;
+	renames Base_Types::all;
+    with TA1;
+    with TA2;
+    with TA3;
+    
+    system Toolchain
+
+    end Toolchain;
+    
+    system implementation Toolchain.config_1
+    	subcomponents
+    		TA1: system TA1::TA1.tool1;
+    		TA2: system TA2::TA2.tool1;
+    		TA3: system TA3::TA3.tool1;
+    	annex resolute {**
+    		argue Toolchain_Correctness(this)
+    	**};
+    end Toolchain.config_1;
+    	
+    annex resolute {**
+    	
+    	goal Toolchain_Correctness(configuration : component) <=
+    		** "The toolchain " configuration " produces correct software" **
+    		strategy VSpells_Workflow: "Argue by V-Spells workflow";
+    		let TA1_Tool : component = ModelAccess.GetComponent("TA1");
+    		let TA2_Tool : component = ModelAccess.GetComponent("TA2");
+    		let TA3_Tool : component = ModelAccess.GetComponent("TA3");
+    		Well_Lifted(TA1_Tool) and Property_Correctly_Implemented(TA2_Tool) and Well_Flattened(TA3_Tool)
+    		
+    	goal Well_Lifted(tool : component) <=
+    		** "The software is well-lifted" **
+    		Filesystem.exists(Get_Evidence_File(tool))
+    		
+    	goal Property_Correctly_Implemented(tool : component) <=
+    		** "The property is correctly implemented" **
+    		Filesystem.exists(Get_Evidence_File(tool))
+    		
+    	goal Well_Flattened(tool : component) <=
+    		** "The software is well-flattened" **
+    		Filesystem.exists(Get_Evidence_File(tool))
+    		
+    	Get_Evidence_File(tool : component) : string =
+    		if has_property(tool, Vspells_Properties::Evidence_File) then 
+    			property(tool, Vspells_Properties::Evidence_File)
+    		else
+    			""
+
+    **};
+    
+end Toolc;

@@ -1,0 +1,4 @@
+property set Vspells_Properties is
+	Evidence_File: aadlstring applies to (system);
+	Evidence_Regex: aadlstring applies to (system);
+end Vspells_Properties;

@@ -1,0 +1,26 @@
+package TA2
+public
+	with Base_Types;
+	renames Base_Types::all;
+
+	with Vspells_Types;
+	renames Vspells_Types::all;
+
+	with Vspells_Properties;
+
+	------------------------------
+	-- TA2
+	------------------------------
+	system TA2
+		features
+			lifted: in event data port TA1_Output;
+			transformed: out event data port TA2_Output;
+	end TA2;
+
+	system implementation TA2.tool1
+		properties
+			Vspells_Properties::Evidence_File => "";
+			Vspells_Properties::Evidence_Regex => "";
+	end TA2.tool1;
+	
+end TA2;
