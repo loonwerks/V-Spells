@@ -1,0 +1,31 @@
+package TA1
+public
+
+	with Base_Types;
+	renames Base_Types::all;
+    with Vspells_Types;
+	renames Vspells_Types::all;
+    
+
+    ------------------------------
+    -- TA1
+    ------------------------------
+    system TA1
+        features
+            src: in event data port SRC;
+            lifted: out event data port TA1_Output;
+    end TA1;
+
+    annex resolute {**
+        		goal Well_Lifted(src : SRC,lifted : TA1_Output) <=
+        		** "DESCRIPTION" **
+       			-- Minimal ie no smaller liftings
+       			-- Complete ie all things of interest are lifted 
+        		-- Equiv  ie Equiv by round-trip test OR by proof
+                -- Contextual (represents context of each lifting, when needed)
+                -- 
+        	undeveloped 
+        		
+    **};
+
+end TA1;

@@ -1,0 +1,19 @@
+package TA3
+public
+
+	with Base_Types;
+	renames Base_Types::all;
+    with Vspells_Types;
+	renames Vspells_Types::all;
+	    ------------------------------
+    -- TA3
+    ------------------------------
+    system TA3
+        features
+            ta2_out: in event data port TA2_output;
+            target: out event data port TARGET;
+        annex resolute {**
+        **};
+    end TA3;
+	
+end TA3;
