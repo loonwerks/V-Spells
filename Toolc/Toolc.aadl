@@ -33,15 +33,16 @@ public
     		
     	goal Well_Lifted(tool : component) <=
     		** "The software is well-lifted" **
-    		Filesystem.exists(Get_Evidence_File(tool))
+--    		FileAccess.exists(Get_Evidence_File(tool))
+			FileAccess.exists("")
     		
     	goal Property_Correctly_Implemented(tool : component) <=
     		** "The property is correctly implemented" **
-    		Filesystem.exists(Get_Evidence_File(tool))
+    		FileAccess.exists(Get_Evidence_File(tool))
     		
     	goal Well_Flattened(tool : component) <=
     		** "The software is well-flattened" **
-    		Filesystem.exists(Get_Evidence_File(tool))
+    		FileAccess.exists(Get_Evidence_File(tool))
     		
     	Get_Evidence_File(tool : component) : string =
     		if has_property(tool, Vspells_Properties::Evidence_File) then 
