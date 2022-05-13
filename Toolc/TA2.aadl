@@ -1,7 +1,5 @@
 package TA2
 public
-	with Base_Types;
-	renames Base_Types::all;
 
 	with Vspells_Types;
 	renames Vspells_Types::all;
@@ -17,10 +15,16 @@ public
 			transformed: out event data port TA2_Output;
 	end TA2;
 
-	system implementation TA2.tool1
+	system implementation TA2.Performer_A
 		properties
-			Vspells_Properties::Evidence_File => "";
-			Vspells_Properties::Evidence_Regex => "";
-	end TA2.tool1;
+			Vspells_Properties::Evidence_File => "C:\\git\\V-Spells\\Toolc\\Evidence\\TA2_Evidence.txt";
+			Vspells_Properties::Evidence_Regex => "PASSED";
+	end TA2.Performer_A;
+	
+	system implementation TA2.Performer_B
+		properties
+			Vspells_Properties::Evidence_File => "C:\\git\\V-Spells\\Toolc\\Evidence\\TA2_Evidence.txt";
+			Vspells_Properties::Evidence_Regex => "PASSED";
+	end TA2.Performer_B;
 	
 end TA2;

@@ -1,8 +1,8 @@
 package Toolc
 public
 
-	with Base_Types;
-	renames Base_Types::all;
+--	with Base_Types;
+--	renames Base_Types::all;
     with TA1;
     with TA2;
     with TA3;
@@ -13,43 +13,64 @@ public
     
     system implementation Toolchain.config_1
     	subcomponents
-    		TA1: system TA1::TA1.tool1;
-    		TA2: system TA2::TA2.tool1;
-    		TA3: system TA3::TA3.tool1;
+    		TA1: system TA1::TA1.Performer_A;
+    		TA2: system TA2::TA2.Performer_A;
+    		TA3: system TA3::TA3.Performer_A;
     	annex resolute {**
     		argue Toolchain_Correctness(this)
     	**};
     end Toolchain.config_1;
+    
+    system implementation Toolchain.config_2
+    	subcomponents
+    		TA1: system TA1::TA1.Performer_A;
+    		TA2: system TA2::TA2.Performer_B;
+    		TA3: system TA3::TA3.Performer_C;
+    	annex resolute {**
+    		argue Toolchain_Correctness(this)
+    	**};
+    end Toolchain.config_2;
     	
     annex resolute {**
     	
     	goal Toolchain_Correctness(configuration : component) <=
-    		** "The toolchain " configuration " produces correct software" **
+    		** "The toolchain " configuration " produces well-patched software" **
     		strategy VSpells_Workflow: "Argue by V-Spells workflow";
     		let TA1_Tool : component = ModelAccess.GetComponent("TA1");
     		let TA2_Tool : component = ModelAccess.GetComponent("TA2");
     		let TA3_Tool : component = ModelAccess.GetComponent("TA3");
-    		Well_Lifted(TA1_Tool) and Property_Correctly_Implemented(TA2_Tool) and Well_Flattened(TA3_Tool)
+    		Well_Lifted(TA1_Tool) and Property_Correctly_Implemented(TA2_Tool) and 
+    		Well_Flattened(TA3_Tool) and Workflow_Order(TA1_Tool, TA2_Tool, TA3_Tool)
     		
     	goal Well_Lifted(tool : component) <=
-    		** "The software is well-lifted" **
---    		FileAccess.exists(Get_Evidence_File(tool))
-			FileAccess.exists("")
-    		
+    		** "The source is well-lifted" **
+    		let file : string = Get_Evidence_File(tool);
+    		FileAccess.fileExists(file) and 
+    		has_property(tool, Vspells_Properties::Evidence_Regex) => StringLib.matches(FileAccess.getContents(file), property(tool, Vspells_Properties::Evidence_Regex))
+			  		
     	goal Property_Correctly_Implemented(tool : component) <=
-    		** "The property is correctly implemented" **
-    		FileAccess.exists(Get_Evidence_File(tool))
+    		** "The new property is correctly implemented" **
+    		let file : string = Get_Evidence_File(tool);
+    		FileAccess.fileExists(file) and 
+    		has_property(tool, Vspells_Properties::Evidence_Regex) => StringLib.matches(FileAccess.getContents(file), property(tool, Vspells_Properties::Evidence_Regex))
     		
     	goal Well_Flattened(tool : component) <=
     		** "The software is well-flattened" **
-    		FileAccess.exists(Get_Evidence_File(tool))
+    		let file : string = Get_Evidence_File(tool);
+    		FileAccess.fileExists(file) and 
+    		has_property(tool, Vspells_Properties::Evidence_Regex) => StringLib.matches(FileAccess.getContents(file), property(tool, Vspells_Properties::Evidence_Regex))
+    		
+    	goal Workflow_Order(TA1_Tool : component, TA2_Tool : component, TA3_Tool : component) <=
+    		** "Tools run in correct order" **
+    		FileAccess.lastModified(Get_Evidence_File(TA1_Tool)) < FileAccess.lastModified(Get_Evidence_File(TA2_Tool)) and
+    		FileAccess.lastModified(Get_Evidence_File(TA2_Tool)) < FileAccess.lastModified(Get_Evidence_File(TA3_Tool))
     		
     	Get_Evidence_File(tool : component) : string =
     		if has_property(tool, Vspells_Properties::Evidence_File) then 
     			property(tool, Vspells_Properties::Evidence_File)
     		else
     			""
-
+    			
     **};
     
 end Toolc;

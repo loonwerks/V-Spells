@@ -1,9 +1,6 @@
 package TA3
 public
 
-	with Base_Types;
-	renames Base_Types::all;
-
 	with Vspells_Types;
 	renames Vspells_Types::all;
 
@@ -18,10 +15,16 @@ public
 			target: out event data port TARGET;
 	end TA3;
 
-	system implementation TA3.tool1
+	system implementation TA3.Performer_A
 		properties
-			Vspells_Properties::Evidence_File => "";
-			Vspells_Properties::Evidence_Regex => "";
-	end TA3.tool1;
+			Vspells_Properties::Evidence_File => "C:\\git\\V-Spells\\Toolc\\Evidence\\TA3_Evidence.txt";
+			Vspells_Properties::Evidence_Regex => "PASSED";
+	end TA3.Performer_A;
+	
+	system implementation TA3.Performer_C
+		properties
+			Vspells_Properties::Evidence_File => "C:\\git\\V-Spells\\Toolc\\Evidence\\TA3_Evidence.txt";
+			Vspells_Properties::Evidence_Regex => "PASSED";
+	end TA3.Performer_C;
 	
 end TA3;
