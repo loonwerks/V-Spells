@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="ASCII"?>
+<argument:Argument xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:argument="http://www.advocate.arc.nasa.gov/argument" xmlns:egsn="http://www.advocate.arc.nasa.gov/egsn" name="Toolchain_Correctness">
+  <nodes xsi:type="argument:ArgumentGoal" name="Toolchain_Correctness" description="The toolchain Toolchain_config_1_Instance : Toolchain::Toolchain.config_1 produces well-patched software"/>
+  <nodes xsi:type="argument:ArgumentStrategy" name="VSpells_Workflow" description="Argue by V-Spells workflow"/>
+  <nodes xsi:type="argument:ArgumentGoal" name="Well_Lifted" description="The source is well-lifted"/>
+  <nodes xsi:type="argument:ArgumentSolution" name="SLN_Well_Lifted" description="The source is well-lifted (Verified by Resolute)"/>
+  <nodes xsi:type="argument:ArgumentGoal" name="Property_Correctly_Implemented" description="The new property is correctly implemented"/>
+  <nodes xsi:type="argument:ArgumentSolution" name="SLN_Property_Correctly_Implemented" description="The new property is correctly implemented (Verified by Resolute)"/>
+  <nodes xsi:type="argument:ArgumentGoal" name="Well_Flattened" description="The software is well-flattened"/>
+  <nodes xsi:type="argument:ArgumentGoal" name="Workflow_Order" description="Tools run in correct order"/>
+  <links xsi:type="egsn:IsSupportedBy" name="Toolchain_Correctness_VSpells_Workflow" to="//@nodes.1" from="//@nodes.0"/>
+  <links xsi:type="egsn:IsSupportedBy" name="ISB_Well_Lifted_3" to="//@nodes.2" from="//@nodes.1"/>
+  <links xsi:type="egsn:IsSupportedBy" name="ISBSLN_Well_Lifted" to="//@nodes.3" from="//@nodes.2"/>
+  <links xsi:type="egsn:IsSupportedBy" name="ISB_Property_Correctly_Implemented_5" to="//@nodes.4" from="//@nodes.1"/>
+  <links xsi:type="egsn:IsSupportedBy" name="ISBSLN_Property_Correctly_Implemented" to="//@nodes.5" from="//@nodes.4"/>
+  <links xsi:type="egsn:IsSupportedBy" name="ISB_Well_Flattened_7" to="//@nodes.6" from="//@nodes.1"/>
+  <links xsi:type="egsn:IsSupportedBy" name="ISB_Workflow_Order_8" to="//@nodes.7" from="//@nodes.1"/>
+</argument:Argument>

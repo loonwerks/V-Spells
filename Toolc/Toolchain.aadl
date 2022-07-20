@@ -53,19 +53,22 @@ public
     		** "The source is well-lifted" **
     		let file : string = Get_Evidence_File(tool);
     		FileAccess.fileExists(file) and 
-    		has_property(tool, Vspells_Properties::Evidence_Regex) => StringLib.matches(FileAccess.getContents(file), property(tool, Vspells_Properties::Evidence_Regex))
+    		has_property(tool, Vspells_Properties::Evidence_Regex) => 
+    			StringLib.matches(FileAccess.getContents(file), property(tool, Vspells_Properties::Evidence_Regex))
 			  		
     	goal Property_Correctly_Implemented(tool : component) <=
     		** "The new property is correctly implemented" **
     		let file : string = Get_Evidence_File(tool);
     		FileAccess.fileExists(file) and 
-    		has_property(tool, Vspells_Properties::Evidence_Regex) => StringLib.matches(FileAccess.getContents(file), property(tool, Vspells_Properties::Evidence_Regex))
+    		has_property(tool, Vspells_Properties::Evidence_Regex) => 
+    			StringLib.matches(FileAccess.getContents(file), property(tool, Vspells_Properties::Evidence_Regex))
     		
     	goal Well_Flattened(tool : component) <=
     		** "The software is well-flattened" **
     		let file : string = Get_Evidence_File(tool);
     		FileAccess.fileExists(file) and 
-    		has_property(tool, Vspells_Properties::Evidence_Regex) => StringLib.matches(FileAccess.getContents(file), property(tool, Vspells_Properties::Evidence_Regex))
+    		has_property(tool, Vspells_Properties::Evidence_Regex) => 
+    			StringLib.matches(FileAccess.getContents(file), property(tool, Vspells_Properties::Evidence_Regex))
     		
     	goal Workflow_Order(TA1_Tool : component, TA2_Tool : component, TA3_Tool : component) <=
     		** "Tools run in correct order" **

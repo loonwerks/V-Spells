@@ -17,7 +17,7 @@ public
 
 	system implementation TA1.Performer_A
 		properties
-			Vspells_Properties::Evidence_File => "Evidence\\TA1_Evidence.txt";
+			Vspells_Properties::Evidence_File => "Evidence/TA1_Evidence.txt";
 			Vspells_Properties::Evidence_Regex => "PASSED";
 	end TA1.Performer_A;
 

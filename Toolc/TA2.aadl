@@ -17,13 +17,13 @@ public
 
 	system implementation TA2.Performer_A
 		properties
-			Vspells_Properties::Evidence_File => "C:\\git\\V-Spells\\Toolc\\Evidence\\TA2_Evidence.txt";
+			Vspells_Properties::Evidence_File => "C:/git/V-Spells/Toolc/Evidence/TA2_Evidence.txt";
 			Vspells_Properties::Evidence_Regex => "PASSED";
 	end TA2.Performer_A;
 	
 	system implementation TA2.Performer_B
 		properties
-			Vspells_Properties::Evidence_File => "C:\\git\\V-Spells\\Toolc\\Evidence\\TA2_Evidence.txt";
+			Vspells_Properties::Evidence_File => "C:/git/V-Spells/Toolc/Evidence/TA2_Evidence.txt";
 			Vspells_Properties::Evidence_Regex => "PASSED";
 	end TA2.Performer_B;
 	
