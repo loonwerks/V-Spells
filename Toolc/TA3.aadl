@@ -11,7 +11,7 @@ public
 	------------------------------
 	system TA3
 		features
-			ta2_out: in event data port TA2_output;
+			transformed: in event data port TA2_output;
 			target: out event data port TARGET;
 	end TA3;
 

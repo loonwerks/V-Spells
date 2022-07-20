@@ -1,9 +1,6 @@
 package TA1
 public
 
---	with Base_Types;
---	renames Base_Types::all;
-
 	with Vspells_Types;
 	renames Vspells_Types::all;
 

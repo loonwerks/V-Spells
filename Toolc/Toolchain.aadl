@@ -1,14 +1,16 @@
-package Toolc
+package Toolchain
 public
+	with Vspells_Types;
+	renames Vspells_Types::all;
 
---	with Base_Types;
---	renames Base_Types::all;
     with TA1;
     with TA2;
     with TA3;
     
     system Toolchain
-
+    	features
+    		binary: in data port SRC;
+    		target: out data port TARGET;
     end Toolchain;
     
     system implementation Toolchain.config_1
@@ -16,6 +18,11 @@ public
     		TA1: system TA1::TA1.Performer_A;
     		TA2: system TA2::TA2.Performer_A;
     		TA3: system TA3::TA3.Performer_A;
+    	connections
+    		c1: port binary -> TA1.src;
+    		c2: port TA1.lifted -> TA2.lifted;
+    		c3: port TA2.transformed -> TA3.transformed;
+    		c4: port TA3.target -> target;
     	annex resolute {**
     		argue Toolchain_Correctness(this)
     	**};
@@ -73,4 +80,4 @@ public
     			
     **};
     
-end Toolc;
+end Toolchain;
